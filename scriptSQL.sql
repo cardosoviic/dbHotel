@@ -124,4 +124,47 @@ create table quartos (
 describe quartos;
 
 alter table quartos add column numeroQuarto varchar(10) not null after andar;
+
+alter table quartos add column cafeDaManha char(3) not null after preco;
+alter table quartos add column foto varchar(255) not null after descricao;
+
+insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, situacao, nome, descricao, preco, tipoCama, varanda) values ("5º", "505", "Superior Premier", 3, "não", "Familiar", "O quarto de 32m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 42, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", 750.90, "Queen Size", "sim");
+insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, situacao, nome, descricao, foto, preco, cafeDaManha, tipoCama, varanda) values ("11º", "1008", "Superior Premier", 4, "sim", "Familiar", "O quarto de 40m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 50, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 1200.90, "sim", "king Size", "não");
+insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, situacao, nome, descricao, foto, preco, cafeDaManha, tipoCama, varanda) values ("2º", "100", "Superior Premier", 3, "não", "Familiar", "O quarto de 40m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 40, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 900.90, "não", "king Size", "sim");
+insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, situacao, nome, descricao, foto, preco, cafeDaManha, tipoCama, varanda) values ("9º", "765", "Superior Premier Twin", 4, "não", "Familiar", "O quarto de 40m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 45, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 1100.90, "sim", "king Size", "não");
+insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, situacao, nome, descricao, foto, preco, cafeDaManha, tipoCama, varanda) values ("4º", "240", "Superior Premier Twin", 2, "não", "Familiar", "O quarto de 40m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 32, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 400, "não", "king Size", "não");
+insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, situacao, nome, descricao, foto, preco, cafeDaManha, tipoCama, varanda) values ("1º", "90", "Superior Premier Twin", 2, "não", "Familiar", "O quarto de 45m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 32, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 500, "sim", "king Size", "sim");
+
+update quartos set cafeDaManha = "sim" where idQuartos = 1;
+update quartos set foto = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi4N9Y4c5EqCTKp2hCaO-LSe5qn_HXJoP9eA&usqp=CAU" where idQuartos = 1;
+
+select * from quartos;
+
+select * from quartos where situacao = "não";
+
+select * from quartos where cafeDaManha = "sim" and situacao = "não";
+
+select * from quartos where varanda = "sim" and cafeDaManha = "sim" and situacao = "não";
+
+select * from quartos where preco < 700 and situacao = "não";
+
+select * from quartos where situacao = "não" order by preco desc;
+
+create table clientes (
+idCliente int primary key auto_increment,
+nome varchar(100) not null,
+cpf char(14) not null unique,
+rg char(12) not null unique, 
+email varchar(50) unique,
+celular varchar(20) not null,
+numeroCartao varchar(20) not null,
+nomeTitular varchar(100) not null,
+validade date not null,
+cvv char(3) not null,
+checkin datetime not null,
+checkout datetime not null,
+idQuartos int not null,
+foreign key (idQuartos) references quartos (idQuartos)
+);
  
+ describe clientes;
