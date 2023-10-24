@@ -152,7 +152,7 @@ select * from quartos where situacao = "não" order by preco desc;
 
 create table clientes (
 idCliente int primary key auto_increment,
-nome varchar(100) not null,
+nomeCompleto varchar(100) not null,
 cpf char(14) not null unique,
 rg char(12) not null unique, 
 email varchar(50) unique,
@@ -168,3 +168,31 @@ foreign key (idQuartos) references quartos (idQuartos)
 );
  
  describe clientes;
+ 
+ select * from quartos where situacao = "não";
+ 
+ insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout, idQuartos) values
+ ("José de Assis", "829.942.570-09", "48.353.888-7", "josedeassis@gmail.com", "(96) 99338-2803", "5526 4863 8286 2543", "José de Assis", "2025-03-24", "452",
+ "2023-11-02 14:00:00", "2023-11-05 12:00:00", 2);
+ 
+  insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout, idQuartos) values
+ ("Victória Cardoso", "159.317.140-49", "31.410.137-8", "victoriacardoso@gmail.com", "(11) 98608-0091", "5526 4863 8286 2543", "Victória Cardoso", "2031-07-25", "263",
+ "2023-12-15 16:00:00", "2023-12-20 18:00:00", 4);
+ 
+ select * from clientes;
+ 
+ /* Buscar nome completo e o celular do cliente que alugou o quarto de número 505, pois a tabela quartos está vinculada à tabela clientes pelo campo idQuartos */
+ select clientes.nomeCompleto,
+ clientes.celular
+ from quartos inner join clientes
+ on quartos.idQuartos = clientes.idQuartos where numeroQuarto = 100;
+  
+/* Buscar TODAS AS INFORMAÇÕES da tabela quartos que está vinculada à tabela clientes pelo campo idQuartos */
+select * from quartos inner join clientes
+on quartos.idQuartos = clientes.idQuartos;
+  
+  
+/* Buscar o nome completo e data/horário do checkout do cliente que alugou o quarto de número 505 */
+select clientes.nomeCompleto, date_format(clientes.checkout, '%d/%m/%Y - %H:%i') as Checkout from quartos inner join clientes on quartos.idQuartos = clientes.idQuartos where numeroQuarto = 100;
+
+/* ATIVIDADE AVALIATIVA */
