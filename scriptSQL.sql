@@ -168,6 +168,8 @@ insert into pedidos (statusPedido, idCliente) values ("Finalizado", 2);
 
 select * from pedidos;
 
+select * from pedidos inner join clientes on pedidos.idCliente = clientes.idCliente;
+
 create table reservas (
 idReserva int primary key auto_increment,
 idPedido int not null,
@@ -175,6 +177,21 @@ idQuartos int not null,
 foreign key (idPedido) references pedidos(idPedido),
 foreign key (idQuartos) references quartos(idQuartos)
 );  
+
+select * from reservas;
+
+select reservas.idReserva, pedidos.idPedido,
+quartos.idQuartos, quartos.nome, quartos.andar, quartos.numeroQuarto 
+from (reservas inner join pedidos on reservas.idPedido = pedidos.idPedido) 
+inner join quartos on reservas.idQuartos = quartos.idQuartos;
+
+insert into reservas (idPedido, idQuartos, checkin, checkout) values (1, 2, "2023-11-02 14:00:00", "2023-11-05 12:00:00");
+insert into reservas (idPedido, idQuartos, checkin, checkout) values (1, 4, "2023-11-02 14:00:00", "2023-11-05 12:00:00");
+
+alter table reservas add column checkin datetime not null;
+alter table reservas add column checkout datetime not null;
+
+describe reservas;
 
 drop table reservas;
 
@@ -186,13 +203,7 @@ nomeCompleto varchar(100) not null,
 cpf char(14) not null unique,
 rg char(12) not null unique, 
 email varchar(50) unique,
-celular varchar(20) not null,
-numeroCartao varchar(20) not null,
-nomeTitular varchar(100) not null,
-validade date not null,
-cvv char(3) not null,
-checkin datetime not null,
-checkout datetime not null
+celular varchar(20) not null
 );
  
  describe clientes;
@@ -201,13 +212,11 @@ checkout datetime not null
  
  select * from quartos where situacao = "não";
  
- insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout) values
- ("José de Assis", "829.942.570-09", "48.353.888-7", "josedeassis@gmail.com", "(96) 99338-2803", "5526 4863 8286 2543", "José de Assis", "2025-03-24", "452",
- "2023-11-02 14:00:00", "2023-11-05 12:00:00");
+ insert into clientes (nomeCompleto, cpf, rg, email, celular) values
+ ("José de Assis", "829.942.570-09", "48.353.888-7", "josedeassis@gmail.com", "(96) 99338-2803");
  
-  insert into clientes (nomeCompleto, cpf, rg, email, celular, numeroCartao, nomeTitular, validade, cvv, checkin, checkout) values
- ("Victória Cardoso", "159.317.140-49", "31.410.137-8", "victoriacardoso@gmail.com", "(11) 98608-0091", "5526 4863 8286 2543", "Victória Cardoso", "2031-07-25", "263",
- "2023-12-15 16:00:00", "2023-12-20 18:00:00");
+  insert into clientes (nomeCompleto, cpf, rg, email, celular) values
+ ("Victória Cardoso", "159.317.140-49", "31.410.137-8", "victoriacardoso@gmail.com", "(11) 98608-0091");
  
  select * from clientes;
  
