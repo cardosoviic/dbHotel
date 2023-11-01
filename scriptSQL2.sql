@@ -1,15 +1,15 @@
 -- drop database dbPadaria;
 
-create database dbPadaria;
-
 show databases;
+
+create database dbPadaria;
 
 use dbPadaria;
 
 create table fornecedores (
 idFornecedor int primary key auto_increment,
 nomeFornecedor varchar(50) not null,
-cnpjFornecedor char(20) not null unique,
+cnpjFornecedor varchar(20) not null,
 telefoneFornecedor varchar(20),
 emailFornecedor varchar (50) not null unique,
 cep varchar (10),
@@ -27,7 +27,7 @@ select * from fornecedores;
 
 create table produtos (
 idProduto int primary key auto_increment,
-nomeProduto varchar(100) not null, 
+nomeProduto varchar(50) not null, 
 descricaoProduto text, 
 precoProduto decimal (10,2) not null, 
 estoqueProduto int not null,
@@ -52,8 +52,8 @@ select * from produtos where precoProduto < 50.00 order by precoProduto asc;
 
 create table clientes (
 idCliente int primary key auto_increment,
-nomeCliente varchar(50) not null,
-cpfCliente char(20) not null unique,
+nomeCliente varchar(50),
+cpfCliente varchar(15) not null unique,
 telefoneCliente varchar(20),
 emailCliente varchar (50) unique,
 cep varchar (10),
@@ -79,7 +79,7 @@ idCliente int not null,
 foreign key (idCliente) references clientes (idCliente)
 );
 
-insert into pedidos (statusPedido, idCliente) values ("Finalizado", 2);
+insert into pedidos (statusPedido, idCliente) values ("Finalizado", 1);
 
 select * from pedidos;
 select * from pedidos inner join clientes on pedidos.idCliente = clientes.idCliente;
@@ -93,13 +93,14 @@ foreign key (idProduto) references produtos(idProduto),
 quantidade int not null
 );
 
+select idPedido from pedidos;
 
-insert into itensPedidos (idPedido, idProduto, quantidade) values (2, 2, 1);
-insert into itensPedidos (idPedido, idProduto, quantidade) values (2, 1, 4);
+insert into itensPedidos (idPedido, idProduto, quantidade) values (1, 2, 1);
+insert into itensPedidos (idPedido, idProduto, quantidade) values (1, 1, 3);
 
 select * from itensPedidos;
 
-select pedidos.idPedido, produtos.idProduto, clientes.nomeCliente, produtos.nomeProduto, produtos.precoProduto
-from (itensPedidos inner join pedidos on itensPedidos.idPedido = pedidos.idPedido)
-inner join produtos on itensPedidos.idProduto = produtos.idProduto 
-inner join clientes on pedidos.idCliente = clientes.idCliente;
+select clientes.nomeCliente, pedidos.idPedido, pedidos.dataPedido, itensPedidos.quantidade, produtos.nomeProduto, produtos.precoProduto
+from clientes inner join pedidos on clientes.idCliente = pedidos.idCliente inner join
+itensPedidos on pedidos.idPedido = itensPedidos.idPedido inner join 
+produtos on produtos.idProduto = itensPedidos.idProduto;
