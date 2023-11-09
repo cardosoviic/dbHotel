@@ -130,11 +130,19 @@ describe reservas;
 
 insert into reservas (idPedido, idQuartos, checkin, checkout) values (1, 2, "2023-11-02 14:00:00", "2023-11-05 12:00:00");
 insert into reservas (idPedido, idQuartos, checkin, checkout) values (1, 4, "2023-11-02 14:00:00", "2023-11-05 12:00:00");
+insert into reservas (idPedido, idQuartos, checkin, checkout) values (2, 2, "2023-11-09 17:00:00", "2023-11-13 14:00:00");
 
 select * from reservas;
 
-select reservas.idReserva, pedidos.idPedido,
-quartos.idQuartos, quartos.nome, quartos.andar, quartos.numeroQuarto 
-from (reservas inner join pedidos on reservas.idPedido = pedidos.idPedido) 
-inner join quartos on reservas.idQuartos = quartos.idQuartos;
+/* OBJETIVO: selecionar o nome do cliente, seu cpf e email, o id do pedido do cliente, a data do pedido,quais quartos fazem parte desse pedido, os tipos dos quartos e seus nomes, assim como
+os andares em que estão, os números de cada quarto, e suas datas de checkin e checkout. */
 
+select clientes.nomeCompleto, clientes.cpf, clientes.email, pedidos.idPedido, pedidos.dataPedido, quartos.tipoQuarto,
+ quartos.nome, quartos.andar, quartos.numeroQuarto, quartos.preco, reservas.checkin, reservas.checkout from 
+ clientes inner join pedidos on clientes.idCliente = pedidos.idCliente inner join 
+ reservas on reservas.idPedido = pedidos.idPedido inner join
+ quartos on reservas.idQuartos = quartos.idQuartos;
+ 
+ /* OBJETIVO: somar o total que o cliente deverá pagar ao concluir o pedido dos quartos */
+ 
+ select sum(quartos.preco) as Total from reservas inner join quartos on reservas.idQuartos = quartos.idQuartos where idPedido = 2;
