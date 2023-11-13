@@ -1,4 +1,3 @@
--- drop database dbPadaria;
 
 show databases;
 
@@ -36,13 +35,22 @@ idFornecedor int not null,
 foreign key (idFornecedor) references fornecedores (idFornecedor)
 );
 
+alter table produtos add column validadeProduto date;
+alter table produtos add column pesoProduto decimal (10,2);
+alter table produtos add column ingredientesProduto text;
+
+alter table produtos modify column validadeProduto date after pesoProduto;
+alter table produtos modify column pesoProduto decimal (10,2) after ingredientesProduto;
+alter table produtos modify column ingredientesProduto text after categoriaProduto;
+
 describe produtos;
 
-insert into produtos (nomeProduto, descricaoProduto, precoProduto, estoqueProduto, categoriaProduto, idFornecedor) values 
-("Pão De Queijo", "É um pão macio por dentro com boa crocância por fora, proporcionada também pelo queijo parmesão que é polvilhado em cada um deles.", 4.00, 2, "Pães", 1);
+insert into produtos (nomeProduto, descricaoProduto, precoProduto, estoqueProduto, categoriaProduto, ingredientesProduto,  pesoProduto, validadeProduto, idFornecedor) values 
+("Pão De Queijo", "É um pão macio por dentro com boa crocância por fora, proporcionada também pelo queijo parmesão que é polvilhado em cada um deles.", 4.00, 2, "Pães", "polvilho doce, leite, ovos, óleo, tempero ou sal a gosto, queijo minas meia cura", "0.20", "2023-11-16", 1);
 
-insert into produtos (nomeProduto, descricaoProduto, precoProduto, estoqueProduto, categoriaProduto, idFornecedor) values 
-("Coxinha", "Massa cremosa a base de batata, superfície dourada e crocante, com o empanamento aderente à massa, recheio de peito de frango desfiado, com fragmentos de salsinha e cebolinha.", 12.50, 3, "Salgados", 1);
+insert into produtos (nomeProduto, descricaoProduto, precoProduto, estoqueProduto, categoriaProduto, ingredientesProduto, pesoProduto, validadeProduto, idFornecedor) values 
+("Coxinha", "Massa cremosa a base de batata, superfície dourada e crocante, com o empanamento aderente à massa, recheio de peito de frango desfiado, com fragmentos de salsinha e cebolinha.", 12.50, 3, "Salgados", "Massa: água, caldo de galinha, sal, farinha de trigo, margarina e colorífico.  
+Recheio: peito de frango, cebola, salsa, pimenta, alho, sal, colorífico, azeite", "0.50", "2023-11-17", 1);
 
 select * from produtos;
 
@@ -95,12 +103,15 @@ quantidade int not null
 
 select idPedido from pedidos;
 
-insert into itensPedidos (idPedido, idProduto, quantidade) values (1, 2, 1);
-insert into itensPedidos (idPedido, idProduto, quantidade) values (1, 1, 3);
+insert into itensPedidos (idPedido, idProduto, quantidade) values (1, 7, 1);
+insert into itensPedidos (idPedido, idProduto, quantidade) values (1, 8, 3);
 
 select * from itensPedidos;
 
 select clientes.nomeCliente, pedidos.idPedido, pedidos.dataPedido, itensPedidos.quantidade, produtos.nomeProduto, produtos.precoProduto
 from clientes inner join pedidos on clientes.idCliente = pedidos.idCliente inner join
 itensPedidos on pedidos.idPedido = itensPedidos.idPedido inner join 
-produtos on produtos.idProduto = itensPedidos.idProduto;
+produtos on produtos.idProduto = itensPedidos.idProduto; 
+
+
+select sum(quantidade * 16.50) as Total from produtos inner join itensPedidos on produtos.idProduto = itensPedidos.idProduto where idPedido = 1;
