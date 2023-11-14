@@ -40,8 +40,8 @@ alter table produtos add column pesoProduto decimal (10,2);
 alter table produtos add column ingredientesProduto text;
 
 alter table produtos modify column validadeProduto date after pesoProduto;
-alter table produtos modify column pesoProduto decimal (10,2) after ingredientesProduto;
-alter table produtos modify column ingredientesProduto text after categoriaProduto;
+alter table produtos modify column pesoProduto decimal (10,2) after precoProduto;
+alter table produtos modify column ingredientesProduto text after nomeProduto;
 
 describe produtos;
 
@@ -51,6 +51,12 @@ insert into produtos (nomeProduto, descricaoProduto, precoProduto, estoqueProdut
 insert into produtos (nomeProduto, descricaoProduto, precoProduto, estoqueProduto, categoriaProduto, ingredientesProduto, pesoProduto, validadeProduto, idFornecedor) values 
 ("Coxinha", "Massa cremosa a base de batata, superfície dourada e crocante, com o empanamento aderente à massa, recheio de peito de frango desfiado, com fragmentos de salsinha e cebolinha.", 12.50, 3, "Salgados", "Massa: água, caldo de galinha, sal, farinha de trigo, margarina e colorífico.  
 Recheio: peito de frango, cebola, salsa, pimenta, alho, sal, colorífico, azeite", "0.50", "2023-11-17", 1);
+
+insert into produtos (nomeProduto, ingredientesProduto, precoProduto, pesoProduto, estoqueProduto, categoriaProduto, validadeProduto, idFornecedor) values 
+("Beijinho", "leite condensado, coco ralado", 1.00, "0.20", 120, "Confeitaria", "2023-11-17", 1);
+
+insert into produtos (nomeProduto, ingredientesProduto, precoProduto, pesoProduto, estoqueProduto, categoriaProduto, validadeProduto, idFornecedor) values 
+("Bolo De Cenoura", "Cenoura", 44.90, "1.2", 10, "Bolos", "2023-11-30", 1);
 
 select * from produtos;
 
@@ -103,8 +109,8 @@ quantidade int not null
 
 select idPedido from pedidos;
 
-insert into itensPedidos (idPedido, idProduto, quantidade) values (1, 7, 1);
-insert into itensPedidos (idPedido, idProduto, quantidade) values (1, 8, 3);
+insert into itensPedidos (idPedido, idProduto, quantidade) values (1, 9, 4);
+insert into itensPedidos (idPedido, idProduto, quantidade) values (1, 10, 1);
 
 select * from itensPedidos;
 
@@ -113,5 +119,19 @@ from clientes inner join pedidos on clientes.idCliente = pedidos.idCliente inner
 itensPedidos on pedidos.idPedido = itensPedidos.idPedido inner join 
 produtos on produtos.idProduto = itensPedidos.idProduto; 
 
+select sum(produtos.precoProduto * itensPedidos.quantidade) as Total from produtos inner join itensPedidos on produtos.idProduto = itensPedidos.idProduto where idPedido = 1;
 
-select sum(quantidade * 16.50) as Total from produtos inner join itensPedidos on produtos.idProduto = itensPedidos.idProduto where idPedido = 1;
+/*ATIVIDADE: POSSÍVEIS FILTROS PARA PADARIA*/ 
+
+/*Filtrar produtos (por exemplo, produtos com validade maior que a data atual */
+
+select * from produtos where validadeProduto > curdate();
+
+/* Filtrar produtos que contenham um ingrediente específico */
+
+select * from produtos where ingredientesProduto like '%glúten%';
+
+/*ATIVIDADE: FILTRAR PÃES QUE NÃO SEJAM FEITOS À BASE DE FARINHA DE TRIGO, COM VALOR ATÉ 7.90 */
+/* QUERO UM RESULTADO AO MENOS!*/
+
+select * from produtos where categoriaProduto = "Pães" or ingredientesProduto like '%farinha de trigo%' and precoProduto < 7.90 order by precoProduto asc;
