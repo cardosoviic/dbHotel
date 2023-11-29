@@ -49,7 +49,7 @@ create table quartos (
     numeroQuarto varchar(10) not null,
     tipoQuarto varchar (50) not null,
     ocupacaoMax int not null,
-    situacao char(3) not null,
+    disponibilidade char(3) not null,
     nome varchar(50) not null,
     descricao text,
     foto varchar(255) not null,
@@ -62,24 +62,24 @@ create table quartos (
 
 describe quartos;
 
-insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, situacao, nome, descricao, foto, preco, cafeDaManha, precoCafe, tipoCama, varanda) values ("5º", "505", "Superior Premier", 3, "não", "Familiar", "O quarto de 32m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 42, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 750.90, "sim", 60.00, "Queen Size", "sim");
-insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, situacao, nome, descricao, foto, preco, cafeDaManha, precoCafe, tipoCama, varanda) values ("11º", "1008", "Superior Premier", 4, "sim", "Familiar", "O quarto de 40m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 50, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 1200.90, "sim", 60.00, "king Size", "não");
-insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, situacao, nome, descricao, foto, preco, cafeDaManha, precoCafe, tipoCama, varanda) values ("2º", "100", "Superior Premier", 3, "não", "Familiar", "O quarto de 40m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 40, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 900.90, "não", 60.00, "king Size", "sim");
-insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, situacao, nome, descricao, foto, preco, cafeDaManha, precoCafe, tipoCama, varanda) values ("9º", "765", "Superior Premier Twin", 4, "não", "Familiar", "O quarto de 40m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 45, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 1100.90, "sim", 60.00, "king Size", "não");
-insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, situacao, nome, descricao, foto, preco, cafeDaManha, precoCafe, tipoCama, varanda) values ("4º", "240", "Superior Premier Twin", 2, "não", "Familiar", "O quarto de 40m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 32, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 400, "não", 60.00, "king Size", "não");
-insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, situacao, nome, descricao, foto, preco, cafeDaManha, precoCafe, tipoCama, varanda) values ("1º", "90", "Superior Premier Twin", 2, "não", "Familiar", "O quarto de 45m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 32, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 500, "sim", 60.00, "king Size", "sim");
+insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, disponibilidade, nome, descricao, foto, preco, cafeDaManha, precoCafe, tipoCama, varanda) values ("5º", "505", "Superior Premier", 3, "não", "Familiar", "O quarto de 32m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 42, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 750.90, "sim", 60.00, "Queen Size", "sim");
+insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, disponibilidade, nome, descricao, foto, preco, cafeDaManha, precoCafe, tipoCama, varanda) values ("11º", "1008", "Superior Premier", 4, "sim", "Familiar", "O quarto de 40m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 50, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 1200.90, "sim", 60.00, "king Size", "não");
+insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, disponibilidade, nome, descricao, foto, preco, cafeDaManha, precoCafe, tipoCama, varanda) values ("2º", "100", "Superior Premier", 3, "não", "Familiar", "O quarto de 40m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 40, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 900.90, "não", 60.00, "king Size", "sim");
+insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, disponibilidade, nome, descricao, foto, preco, cafeDaManha, precoCafe, tipoCama, varanda) values ("9º", "765", "Superior Premier Twin", 4, "não", "Familiar", "O quarto de 40m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 45, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 1100.90, "sim", 60.00, "king Size", "não");
+insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, disponibilidade, nome, descricao, foto, preco, cafeDaManha, precoCafe, tipoCama, varanda) values ("4º", "240", "Superior Premier Twin", 2, "não", "Familiar", "O quarto de 40m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 32, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 400, "não", 60.00, "king Size", "não");
+insert into quartos (andar, numeroQuarto, tipoQuarto, ocupacaoMax, disponibilidade, nome, descricao, foto, preco, cafeDaManha, precoCafe, tipoCama, varanda) values ("1º", "90", "Superior Premier Twin", 2, "não", "Familiar", "O quarto de 45m² com piso frio, varanda - vista para o mar. Oferece ar condicionado individual, TV LCD 32, wi-fi grátis, cofre digital, frigobar abastecido e banheiro com secador de cabelo e amenities e mesa de trabalho.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN1riPx8oEW-kk7d9PjHeo5YbD9O_jm93QFg&usqp=CAU", 500, "sim", 60.00, "king Size", "sim");
 
 select * from quartos;
 
-select * from quartos where situacao = "não";
+select * from quartos where disponibilidade = "não";
 
-select * from quartos where cafeDaManha = "sim" and situacao = "não";
+select * from quartos where cafeDaManha = "sim" and disponibilidade = "não";
 
-select * from quartos where varanda = "sim" and cafeDaManha = "sim" and situacao = "não";
+select * from quartos where varanda = "sim" and cafeDaManha = "sim" and disponibilidade = "não";
 
-select * from quartos where preco < 700 and situacao = "não";
+select * from quartos where preco < 700 and disponibilidade = "não";
 
-select * from quartos where situacao = "não" order by preco desc;
+select * from quartos where disponibilidade = "não" order by preco desc;
 
 create table clientes (
 idCliente int primary key auto_increment,
@@ -130,7 +130,7 @@ describe reservas;
 
 insert into reservas (idPedido, idQuartos, checkin, checkout) values (1, 2, "2023-11-02 14:00:00", "2023-11-05 12:00:00");
 insert into reservas (idPedido, idQuartos, checkin, checkout) values (1, 4, "2023-11-02 14:00:00", "2023-11-05 12:00:00");
-insert into reservas (idPedido, idQuartos, checkin, checkout) values (2, 2, "2023-11-09 17:00:00", "2023-11-13 14:00:00");
+insert into reservas (idPedido, idQuartos, checkin, checkout) values (2, 9, "2023-11-09 17:00:00", "2023-11-13 14:00:00");
 
 select * from reservas;
 
@@ -146,3 +146,31 @@ select clientes.nomeCompleto, clientes.cpf, clientes.email, pedidos.idPedido, pe
  /* OBJETIVO: somar o total que o cliente deverá pagar ao concluir o pedido dos quartos */
  
  select sum(quartos.preco) as Total from reservas inner join quartos on reservas.idQuartos = quartos.idQuartos where idPedido = 2;
+ 
+ /* Cliente Victória Cardoso - idPedido 2 
+ Quarto reservado: Superior Premier Twin (1° Andar, número 90, preço/diária: R$ 500.00)
+ Check-in: 27/11/2023 às 10:00h 
+ Check-out: 08/12/2023 às 10:00h*/
+ /* Atualizar a disponibilidade do quarto somente daqueles cuja data do checkout já passou ou é igual a data do sistema */
+ 
+ update reservas inner join quartos on reservas.idQuartos = quartos.idQuartos
+ set quartos.disponibilidade = "sim" 
+ where reservas.checkout < current_timestamp();
+ 
+ select * from quartos;
+ 
+ /*Buscar o nome do cliente, andar, número, do quarto e checkout somente daqueles
+ cuja data do checkout já passou ou é igual à data do sistema */
+ select pedidos.idPedido, clientes.nomeCompleto, quartos.andar, quartos.numeroQuarto, reservas.checkout from
+ clientes inner join pedidos on clientes.idCliente = pedidos.idCliente inner join
+ reservas on reservas.idPedido = pedidos.idPedido inner join quartos 
+ on reservas.idQuartos = quartos.idQuartos where reservas.checkout <= current_timestamp();
+ 
+ /*Buscar o nome do cliente, andar, número do quarto, checkout (com data formatada em 99/99/9999) e
+ o cálculo de quantos dias faltam para a reserva do cliente encerrar (dias restantes = data do checkout - data de hoje) */
+ 
+ select pedidos.idPedido, clientes.nomeCompleto, quartos.andar, quartos.numeroQuarto, date_format(reservas.checkout, '%d/%m/%Y') as checkout,
+ datediff(reservas.checkout, curdate()) as dias_restantes
+ from clientes inner join pedidos on clientes.idCliente = pedidos.idCliente inner join
+ reservas on reservas.idPedido = pedidos.idPedido inner join quartos 
+ on reservas.idQuartos = quartos.idQuartos where reservas.checkout > current_timestamp();
